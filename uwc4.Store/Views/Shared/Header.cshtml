@@ -1,0 +1,28 @@
+﻿@model uwc4.Store.Models.HeaderModel
+
+<div class="row-fluid">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="nav-collapse navbar-responsive-collapse in collapse">
+                    <ul class="nav" style="float:none">
+						@foreach (var item in Model.MenuItems)
+						{
+							string curr = ViewContext.RouteData.Values.ContainsKey("category") ? 
+								ViewContext.RouteData.GetRequiredString("category") : null;
+							<li @(curr == item.Param ? "class=active" : "")>
+								<a href="@Url.Action("List", "Products", new { category = item.Param })">@item.Title</a>
+							</li>
+						}
+						<li style="float:right">
+							<form class="navbar-form search-form" action="@Url.Action("Search", "Products")" method="get">
+								<input type="text" name="query" value="@Request.QueryString["query"]" />
+								<button type="submit" class="btn">Поиск</button>
+							</form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

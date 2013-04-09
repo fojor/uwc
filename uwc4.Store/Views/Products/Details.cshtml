@@ -1,0 +1,41 @@
+﻿@model uwc4.Store.Models.ProductDetailsModel
+
+@{
+    ViewBag.Title = string.Format("{0} {1}", Model.Product.Vendor, Model.Product.Title);
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row-fluid">
+    <div class="span5">
+        <div class="thumbnail">
+            <img src="@Url.Action("Image", new { id = Model.Product.ID })" alt="" >
+        </div>
+    </div>
+    <div class="span7">
+        <div class="price-big">@Model.Product.Price грн</div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#">Характеристики</a>
+            </li>
+            <li>
+                <a href="#">Описание</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <table class="table table-striped">
+                <tbody>
+                    @foreach (var item in Model.Properties)
+                    {
+                        <tr>
+                            <td>@item.Key</td>
+                            <td>@item.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+		<div class="tab-content">
+            @Model.Product.Description
+        </div>
+    </div>
+</div>

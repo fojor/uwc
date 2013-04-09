@@ -1,0 +1,17 @@
+﻿@model uwc4.Store.Models.ProductModel
+
+<div class="thumbnail product-item">
+    <img src="@Url.Action("Image", new { id = Model.ID })" alt="" >
+    <div class="caption">
+        <h3>@Model.Vendor @Model.Title @Model.ID</h3>
+        <p class="desc">@Model.Description</p>
+        <div class="row-fluid">
+            <div class="span6">
+                <span class="product-price">@Model.Price грн</span>
+            </div>
+            <div class="span6">
+                <a class="btn pull-right" href="@Url.Action("Details", new { product = Model.Param })">Подробнее »</a>
+            </div>
+        </div>
+    </div>
+</div>

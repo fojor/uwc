@@ -1,0 +1,42 @@
+﻿@model uwc4.Store.Models.FilterModel
+
+<div class="well sidebar-nav filter">
+    @*<input type="hidden" id="priceMin" name="priceMin" value="@Model.PriceMin" />
+    <input type="hidden" id="priceMax" name="priceMax" value="@Model.PriceMax" />*@
+
+       
+    <ul class="nav nav-list">
+        @*<li class="nav-header">Цена</li>
+        <li>
+            <div id="slider-range" style="margin-bottom:10px"></div>
+            <span> от </span>
+            <input type="text" name="pmin" id="pmin" value="@Model.PriceMinChange" readonly="readonly" style="width:40px" />
+            <span> до </span>
+            <input type="text" name="pmax" id="pmax" value="@Model.PriceMaxChange" readonly="readonly" style="width:40px" />
+            <span> грн </span>
+        </li>*@
+
+		@foreach (var group in Model.Items)
+		{
+			<li class="nav-header">@group.Title</li>
+			foreach (var item in group.Items)
+			{
+				<li>
+					@if(item.Disabled)
+					{
+						<a class="chk-box disabled">
+							@item.Title
+						</a>
+					}
+					else
+					{
+						<a class="chk-box @(item.Checked ? "checked" : "")" 
+							href="@Url.Action("List", new { category = ViewContext.RouteData.GetRequiredString("category"), filter = item.Link })">
+							@item.Title (@(group.HasCheckedItems && !item.Checked ? "+" : "")@item.Count)
+						</a>
+					}
+				</li>
+			}
+		}
+    </ul>
+</div>

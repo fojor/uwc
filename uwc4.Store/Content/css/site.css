@@ -1,0 +1,43 @@
+﻿.filter .nav-list > li {
+	padding:3px!important;
+}
+.filter, .filter .nav > li > a:hover {
+	background-color:#fff!important;
+}
+.filter .chk-box {
+	height:18px;
+	padding:0 0 0 20px!important;
+	background:url(/content/img/checkbox.jpg) 0 0 no-repeat;
+	display:inline-block;
+}
+.filter .chk-box.checked {
+	font-weight:bold;
+	background-position:0 -19px;
+}
+.filter .chk-box.disabled, .filter .chk-box.disabled:hover {
+	color:#7a7a7a;
+	background-position:0 -38px;
+}
+.product-item {
+	margin-bottom:30px;
+}
+.product-item h3 {
+	font-size:20px;
+	line-height:20px;
+}
+.product-price {
+	font-size:22px;
+	color:#08c;
+	line-height:28px;
+	font-weight:bold;
+}
+.price-big {
+	font-size:40px;
+	line-height:70px;
+}
+.search-form input {
+	width:240px
+}
+.tab-content {
+	display:none;
+}

@@ -1,0 +1,32 @@
+﻿@model uwc4.Store.Models.SearchResultModel
+
+@{
+	ViewBag.Title = "Результаты поиска: " + Request.QueryString["query"];
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row-fluid">
+    <div class="products-list">
+        @{
+			int i = 0;
+			foreach (var item in Model.Items)
+			{
+				if (i == 0 || i % 4 == 0)
+				{
+                    @:<div class="row-fluid">
+                }
+                <div class="span3">
+                    @{
+						Html.RenderPartial("Product", item);
+					}
+                </div>
+				if ((i + 1) % 4 == 0)
+				{
+                    @:</div>
+                }
+				i++;
+			}
+        }
+    </div>
+</div>
