@@ -6,17 +6,7 @@
 
        
     <ul class="nav nav-list">
-        @*<li class="nav-header">Цена</li>
-        <li>
-            <div id="slider-range" style="margin-bottom:10px"></div>
-            <span> от </span>
-            <input type="text" name="pmin" id="pmin" value="@Model.PriceMinChange" readonly="readonly" style="width:40px" />
-            <span> до </span>
-            <input type="text" name="pmax" id="pmax" value="@Model.PriceMaxChange" readonly="readonly" style="width:40px" />
-            <span> грн </span>
-        </li>*@
-
-		@foreach (var group in Model.Items)
+        	@foreach (var group in Model.Items)
 		{
 			<li class="nav-header">@group.Title</li>
 			foreach (var item in group.Items)
