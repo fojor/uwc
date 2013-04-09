@@ -64,29 +64,5 @@ namespace uwc4.Store.Controllers
 
 			throw new HttpException(404, "Not found");
 		}
-
-		public ActionResult Upload()
-		{
-			return View();
-		}
-
-		[HttpPost]
-		public ActionResult Upload(int id, HttpPostedFileBase image)
-		{
-			byte[] buffer = new byte[image.ContentLength];
-			Stream s = image.InputStream;
-			s.Read(buffer, 0, buffer.Length);
-
-			var query = "insert into images (productid, mimetype, data) values (@id, @type, @data)";
-			using (var c = DBInterface.Command(query, false))
-			{
-				c.Parameters.AddWithValue("@id", id);
-				c.Parameters.AddWithValue("@type", image.ContentType);
-				c.Parameters.AddWithValue("@data", buffer);
-				c.ExecuteNonQuery();
-			}
-
-			return View();
-		}
     }
 }
