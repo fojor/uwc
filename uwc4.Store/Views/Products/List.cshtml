@@ -9,81 +9,29 @@
 <div class="row-fluid">
     <div class="span3">
         @{
-			Html.RenderAction("Filter");
+		Html.RenderAction("Filter");
         }   
     </div>
     <div class="span9 products-list">
         @{
-			int i = 0;
-			foreach (var item in Model.Items)
+		int i = 0;
+		foreach (var item in Model.Items)
+		{
+			if (i == 0 || i % 3 == 0)
 			{
-				if (i == 0 || i % 3 == 0)
-				{
-                    @:<div class="row-fluid">
-                }
-                <div class="span4">
-                    @{
-						Html.RenderPartial("Product", item);
-					}
-                </div>
-				if ((i + 1) % 3 == 0)
-				{
-                    @:</div>
-                }
-				i++;
-			}
+            		@:<div class="row-fluid">
+                	}
+                	<div class="span4">
+                    	@{
+				Html.RenderPartial("Product", item);
+		    	}
+                	</div>
+		   	if ((i + 1) % 3 == 0)
+		   	{
+                	@:</div>
+                    	}
+			i++;
+		}
         }
     </div>
 </div>
-
-
-@section Scripts
-{
-    <script type="text/javascript">
-
-    	//function changePriceRange(minPrice, maxPrice) {
-    	//	$("#pmin").val(minPrice);
-    	//	$("#pmax").val(maxPrice);
-    	//}
-
-    	//function showProducts(minPrice, maxPrice) {
-    	//	console.log('minp: ' + minPrice + ' maxp: ' + maxPrice);
-    	//	$(".products-list .thumbnail").hide().filter(function () {
-
-    	//		var price = parseInt($(this).data("price"), 10);
-    	//		console.log('price: ' + price + ' return: ' + price >= minPrice && price <= maxPrice);
-    	//		return price >= minPrice && price <= maxPrice;
-    	//	}).show();
-    	//}
-
-    	$(function () {
-    		var priceMin = parseInt($('#priceMin').val());
-    		var priceMax = parseInt($('#priceMax').val());
-
-    		var pmin = parseInt($('#pmin').val());
-    		var pmax = parseInt($('#pmax').val());
-
-    		var options = {
-    			range: true,
-    			min: priceMin,
-    			max: priceMax,
-    			values: [pmin, pmax],//параметри, що були встановлені користувачем
-    			slide: function (event, ui) {
-    				var min = ui.values[0],
-                        max = ui.values[1];
-    				//showProducts(min, max);
-    				changePriceRange(min, max);
-    			}
-    		}, min, max;
-
-    		$("#slider-range").slider(options);
-
-    		min = $("#slider-range").slider("values", 0);
-    		max = $("#slider-range").slider("values", 1);
-
-    		//$("#amount").val(min + " грн - " + max + " грн");
-
-    		//showProducts(min, max);
-    	});
-    </script>
-}
